@@ -20,6 +20,10 @@ class Galaxy{
   jwtSign(payload){
     return (jwt.sign(payload,encryptKey,{}));
   }
+
+  jwtVerify(token,callback){
+    jwt.verify(token,encryptKey,callback);
+  }
 }
 
 module.exports = Galaxy;
