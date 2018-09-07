@@ -1,0 +1,71 @@
+const Users =
+  { Admin : "admin"
+  , Customer : "customer"
+  , Contributor : "contributor"
+  }
+
+const UserResponse =
+  { Like : 1
+  , Dislike : -1
+  }
+
+const Permissions =
+  { Admin : adminPermissons
+  , Customer : customerPermissions
+  , Contributor : contributorPermissions
+  }
+
+const adminPermissons =
+  { read : true
+  , write : true
+  , maintainContributors : true
+  , canAskQuestions : false
+  }
+
+const customerPermissions =
+  { read : true
+  , write : false
+  , maintainContributors : false
+  , canAskQuestions : true
+  }
+
+const contributorPermissions =
+  { read : true
+  , write : true
+  , maintainContributors : false
+  , canAskQuestions : false
+  }
+
+const userDetails =
+  { name : ""
+  , age : null
+  , mobileNumber : ""
+  , email : null
+  , role : Users.Customer // Default
+  , userId : Auto Increment Integer
+  , password : ""
+  }
+
+const postDetails =
+  { postedBy : userId
+  , parentPost : postId // This should be null for questions and rest post this should have questions postId
+  , likedBy : JSON<userId,UserResponse> // This one will have both like and dislike . so we need to calculate programatically for likes and dislikes
+  , tag : Array ""
+  , postId : Auto Increment Integer
+  }
+
+/*
+
+Login :
+  1) Login with mail id and password
+  2) Login with google and facebook and twitter api
+
+Post Medicines :
+  Admin can do this. Then need to check whether user can view or not.
+  Assets need to be shipped.
+  Like and dislike and queries allowed.
+
+Ask Doubts :
+  General forum where user can ask doubt and contributor can reply for the doubts.
+
+*/

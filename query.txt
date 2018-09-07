@@ -1,0 +1,49 @@
+/* -------------------------------------------------------------------   CREATE   ------------------------------------------------------------------- */
+
+create database siddha;
+
+create type Users as enum('admin','customer','contributor');
+
+create table userdetails
+	(	name text NOT NULL
+	,	age integer
+	,	mobileNumber text
+	,	email text
+	,	role Users default 'customer'
+	, id serial primary key
+  , password text NOT NULL
+	);
+
+create table posts
+	( postedBy integer NOT NULL references userdetails(id) ON DELETE CASCADE
+  , tag text[]
+  , id serial primary key
+	);
+
+create table likes
+	(	userId integer NOT NULL references userdetails(id) ON DELETE CASCADE
+	,	postId integer NOT NULL references posts(id) ON DELETE CASCADE
+	, likeCount integer default 0
+	);
+
+create table permission
+	( role Users NOT NULL UNIQUE
+	, read boolean NOT NULL
+	, write boolean NOT NULL
+  , maintainContributors boolean NOT NULL
+  , canAskQuestions boolean NOT NULL
+	);
+
+create table comments
+	(	userId integer NOT NULL references userdetails(id) ON DELETE CASCADE
+	,	postId integer NOT NULL references posts(id) ON DELETE CASCADE
+	, comment text NOT NULL
+	);
+
+/* -------------------------------------------------------------------   INSERT   ------------------------------------------------------------------- */
+
+insert into permission
+	(role , read , write , maintainContributors , canAskQuestions)
+	values ('admin' , true , true , true , false)
+	, ('contributor' , true , true , false , false)
+	, ('customer' , true , false , false , true) ;
