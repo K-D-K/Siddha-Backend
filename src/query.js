@@ -8,7 +8,7 @@ const {isUndefined , isObject, isArray , forceParseJSON} = require("./Utils.js")
  *         : JSON that need to insert in table
  * String  : Stringified JSON or Array Objects that need to insert in table
  */
-const insertWithError = (database, tableName, data , callback) => {
+const insertWithError = (galaxy, tableName, data , callback) => {
 
   /*
    * This condition is to check whether data is string .
@@ -78,7 +78,7 @@ const insertWithError = (database, tableName, data , callback) => {
   queryStr = queryStr.slice(0,queryStr.length-1);
 
   // making DB call
-  database.execute(queryStr,callback);
+  galaxy.getDb().execute(queryStr,callback);
 };
 
 exports.insertWithError = insertWithError;
