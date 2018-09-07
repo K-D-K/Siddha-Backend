@@ -9,8 +9,12 @@ const db = new DB();
 app.use(express.json());
 
 app.get('/', (req, res, next) => {
-
+  res.status(200).send("UP");
 });
+
+app.post('/login', (req, res, next) => {
+  user.login(db,req,res);
+})
 
 app.post('/createUser',(req,res,next) => {
   user.createUser(db,req,res);

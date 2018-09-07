@@ -59,6 +59,29 @@ const convertToError = err => {
   return (new Error(err));
 }
 
+/*
+ * This function will check whether the data feed to the function is object or not.
+ * If it is object . It will simply return . orElse it will try to hard parse and return final response
+ */
+const convertObject = obj => {
+  if(isObject(obj)){
+    return obj;
+  }
+  forceParseJSON(obj);
+}
+
+/*
+ * This function check whether any one key is present object or not.
+ * If it presents . it will return the key orElse it will return null value
+ */
+const getFirst = (obj,keys) => {
+  for(let index in keys){
+    if(obj.hasOwnProperty(keys[index])){
+      return keys[index];
+    }
+  }
+}
+
 
 // Exports from this module
 exports.isUndefined = isUndefined ;
@@ -67,3 +90,6 @@ exports.isArray = isArray ;
 exports.forceParseJSON = forceParseJSON ;
 exports.Success = Success ;
 exports.extractError = extractError;
+exports.convertToError = convertToError;
+exports.convertObject = convertObject;
+exports.getFirst = getFirst;
