@@ -1,11 +1,11 @@
 This file shows sample structure of config.js
 
 const DBConfig =
-	{ user: 'your postgres user name'
-	,	database: 'siddha' // This is database name for my project . keep name as per ur wish
-	,	password: 'your postgres user password'
-	,	port: 5432 // This is default ip for postgres
-	};
+  { user: 'your postgres user name'
+  , database: 'siddha' // This is database name for my project . keep name as per your wish
+  , password: 'your postgres user password'
+  , port: 5432 // This is default ip for postgres
+  };
 
 
 exports.dbConfig = DBConfig;

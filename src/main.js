@@ -13,8 +13,7 @@ app.get('/', (req, res, next) => {
 });
 
 app.post('/createUser',(req,res,next) => {
-	console.log("I'm in createUser");
-	user.createUser(db,req,res);
+  user.createUser(db,req,res);
 })
 
 app.listen(4000, function () {

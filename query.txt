@@ -7,8 +7,8 @@ create type Users as enum('admin','customer','contributor');
 create table userdetails
 	(	name text NOT NULL
 	,	age integer
-	,	mobileNumber text
-	,	email text
+	,	mobileNumber text UNIQUE
+	,	email text UNIQUE
 	,	role Users default 'customer'
 	, id serial primary key
   , password text NOT NULL
