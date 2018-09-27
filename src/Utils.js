@@ -34,6 +34,9 @@ const forceParseJSON = str => {
  */
 function Success(message){
   this.message = message;
+  this.toString = function(){
+    return this.message;
+  }
 }
 
 /*

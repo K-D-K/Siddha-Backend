@@ -72,5 +72,33 @@ const login = (galaxy,req,res) => {
   }
 }
 
+const getAllUsers = (galaxy,res) => {
+  let query = "select name , mobileNumber , email , id , role from userdetails ;"
+  let callBackFunction = response => {
+    if(response instanceof Success){
+      res.status(200).send(response.message);
+    } else {
+      res.status(400).send(extractError(response));
+    }
+  }
+  galaxy.getDb().execute(query,callBackFunction);
+}
+
+const userInfo = (galaxy,req,res) => {
+  let sessionData = req.decoded;
+  let query = "select * from (select * from userdetails where id = " + sessionData.userId + ") as a join posts on a.id = posts.postedby;"
+
+  let callBackFunction = response => {
+    if(response instanceof Success){
+      res.status(200).send(response.message);
+    } else {
+      res.status(400).send(extractError(response));
+    }
+  }
+  galaxy.getDb().execute(query,callBackFunction);
+}
+
 exports.createUser = createUser;
 exports.login = login;
+exports.userInfo = userInfo;
+exports.getAllUsers = getAllUsers;

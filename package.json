@@ -4,6 +4,7 @@
   "description": "This project support backend-services for siddha app",
   "main": "index.js",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "pg": "^7.4.3"

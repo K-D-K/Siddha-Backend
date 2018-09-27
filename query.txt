@@ -17,6 +17,7 @@ create table userdetails
 create table posts
 	( postedBy integer NOT NULL references userdetails(id) ON DELETE CASCADE
   , tag text[]
+  , content text NOT NULL
   , id serial primary key
 	);
 

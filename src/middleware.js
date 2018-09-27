@@ -9,7 +9,6 @@ const verifySign = (galaxy, req, res, next) => {
       if (err) {
         return res.status(400).send({ success: false, message: "Failed to authenticate token." });
       } else {
-        console.log(decoded);
         req.decoded = decoded;
         next();
       }
